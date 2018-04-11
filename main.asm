@@ -14,7 +14,7 @@ was much too frequent which would limit controllability of the servo motor.
 The pulse to the servo motor happens every 20 mS.  There is no advantage to 
 updating the servo motor position more frequent than the motor is pulsed.  It
 makes sense to synchronize the updates with the pulse every 20 mS.  We are using
-the Non PWM CTC (Clear Timer on Compare Match) mode (Mode 12) on Timer 1
+the Non PWM CTC (Clear Timer on Compare Match) mode (Mode 14) on Timer 1
 See [Pg. 106 WGM13:0] [Pg. 109 ICIE1] [Pg. 110 ICF1] in the DataSheet.
 The Input Capture Interrupt is triggered when Timer 1 matches the Input Capture
 Register.  We can test the pushbuttons and update the servo positions on each 
@@ -143,7 +143,7 @@ RESET:
 		ldi 	M2_L, low(MidPulse)
 		out 	OCR1BL, M2_L
 
-		ldi 	TEMP, (1<<COM1A1)|(0<<COM1A0)|(1<<COM1B1)|(0<<COM1B0)|(0<<WGM11)|(0<<WGM10)
+		ldi 	TEMP, (1<<COM1A1)|(0<<COM1A0)|(1<<COM1B1)|(0<<COM1B0)|(1<<WGM11)|(0<<WGM10)
 		out 	TCCR1A, TEMP
 
 		ldi 	TEMP, (1<<WGM13)|(1<<WGM12)|(0<<CS12)|(0<<CS11)|(1<<CS10)
